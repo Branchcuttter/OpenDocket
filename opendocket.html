@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Docket — Free Legal Forms for Everyone</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#0B1F3A;
+  --navy-mid:#162D50;
+  --navy-light:#1E3D6B;
+  --gold:#C9A84C;
+  --gold-light:#E8C96A;
+  --cream:#F8F5EF;
+  --cream-dark:#EEE9DF;
+  --text:#1A1A2E;
+  --text-mid:#4A5568;
+  --text-light:#718096;
+  --white:#FFFFFF;
+  --success:#2D6A4F;
+  --border:#D4C9B5;
+}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+/* NAV */
+nav{background:var(--navy);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-logo-icon{width:32px;height:32px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.nav-logo-icon svg{width:18px;height:18px;fill:var(--navy);}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);font-weight:600;letter-spacing:-0.3px;}
+.nav-logo-text span{color:var(--gold);}
+.nav-tagline{font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:0.5px;}
+.nav-right{display:flex;align-items:center;gap:1.5rem;}
+.nav-link{font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;transition:color 0.2s;}
+.nav-link:hover{color:var(--gold);}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 100%);padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);border-radius:99px;padding:5px 14px;font-size:12px;color:var(--gold);margin-bottom:1.5rem;letter-spacing:0.3px;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);color:var(--white);font-weight:700;line-height:1.2;margin-bottom:1.2rem;max-width:700px;margin-left:auto;margin-right:auto;}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero p{font-size:1.05rem;color:rgba(255,255,255,0.7);max-width:560px;margin:0 auto 2.5rem;line-height:1.7;}
+
+/* SEARCH */
+.search-box{max-width:620px;margin:0 auto;position:relative;}
+.search-input{width:100%;padding:16px 56px 16px 20px;font-size:15px;border:none;border-radius:12px;background:var(--white);color:var(--text);outline:none;box-shadow:0 8px 32px rgba(0,0,0,0.25);font-family:'Inter',sans-serif;}
+.search-input::placeholder{color:var(--text-light);}
+.search-btn{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--gold);border:none;border-radius:8px;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.search-btn:hover{background:var(--gold-light);}
+.search-btn svg{width:18px;height:18px;fill:var(--navy);}
+.search-hint{font-size:12px;color:rgba(255,255,255,0.4);margin-top:10px;text-align:center;}
+
+/* STATS */
+.stats{background:var(--navy-mid);padding:1.2rem 2rem;display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);font-weight:600;}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.5px;text-transform:uppercase;margin-top:2px;}
+
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:3rem 2rem;}
+
+/* FILTERS */
+.filters-row{display:flex;align-items:center;gap:10px;margin-bottom:2rem;flex-wrap:wrap;}
+.filter-label{font-size:12px;color:var(--text-light);text-transform:uppercase;letter-spacing:0.5px;margin-right:4px;}
+.filter-btn{padding:6px 16px;border-radius:99px;border:1px solid var(--border);background:var(--white);color:var(--text-mid);font-size:13px;cursor:pointer;transition:all 0.15s;font-family:'Inter',sans-serif;}
+.filter-btn:hover{border-color:var(--navy);color:var(--navy);}
+.filter-btn.active{background:var(--navy);border-color:var(--navy);color:var(--white);}
+.state-select{padding:6px 14px;border-radius:99px;border:1px solid var(--border);background:var(--white);color:var(--text-mid);font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;outline:none;margin-left:auto;}
+
+/* SECTION HEADER */
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.2rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);font-weight:600;}
+.result-count{font-size:13px;color:var(--text-light);}
+
+/* FORM CARDS */
+.forms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;}
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.4rem;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.form-card:hover{border-color:var(--navy);box-shadow:0 4px 20px rgba(11,31,58,0.08);transform:translateY(-1px);}
+.form-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--border);transition:background 0.2s;}
+.form-card:hover::before{background:var(--gold);}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.card-category{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;padding:3px 10px;border-radius:99px;}
+.cat-housing{background:#EBF8FF;color:#2B6CB0;}
+.cat-bankruptcy{background:#FFF5F5;color:#C53030;}
+.cat-employment{background:#F0FFF4;color:#276749;}
+.cat-family{background:#FAF5FF;color:#6B46C1;}
+.cat-immigration{background:#FFFAF0;color:#C05621;}
+.cat-veterans{background:#EBF8FF;color:#2C5282;}
+.cat-healthcare{background:#F0FFF4;color:#22543D;}
+.cat-smallclaims{background:#FEFCBF;color:#744210;}
+.cat-federal{background:#EBF4FF;color:#2A4365;}
+.form-num{font-family:'Inter',sans-serif;font-size:11px;color:var(--text-light);background:var(--cream);padding:3px 8px;border-radius:4px;white-space:nowrap;}
+.card-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.3;}
+.card-plain{font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:12px;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;}
+.card-who{font-size:11px;color:var(--text-light);}
+.card-who strong{color:var(--text-mid);}
+.card-arrow{width:28px;height:28px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.form-card:hover .card-arrow{background:var(--navy);}
+.card-arrow svg{width:13px;height:13px;fill:var(--text-light);transition:fill 0.2s;}
+.form-card:hover .card-arrow svg{fill:var(--white);}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(11,31,58,0.6);z-index:200;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--white);border-radius:16px;max-width:620px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,0.3);}
+.modal-header{background:var(--navy);padding:1.5rem;border-radius:16px 16px 0 0;position:sticky;top:0;}
+.modal-category{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white);font-weight:600;line-height:1.3;}
+.modal-form-num{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.modal-body{padding:1.5rem;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,0.1);border:none;border-radius:50%;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;line-height:1;}
+.modal-section{margin-bottom:1.4rem;}
+.modal-section-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-light);margin-bottom:8px;}
+.modal-section p{font-size:14px;color:var(--text-mid);line-height:1.7;}
+.modal-steps{list-style:none;counter-reset:steps;}
+.modal-steps li{counter-increment:steps;display:flex;gap:12px;margin-bottom:10px;font-size:14px;color:var(--text-mid);line-height:1.6;}
+.modal-steps li::before{content:counter(steps);min-width:24px;height:24px;background:var(--navy);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:1px;}
+.modal-warning{background:#FFFBEB;border:1px solid #F6E05E;border-radius:8px;padding:10px 14px;font-size:13px;color:#744210;margin-bottom:1.4rem;display:flex;gap:8px;align-items:flex-start;line-height:1.6;}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--navy);color:var(--white);border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;font-family:'Inter',sans-serif;transition:background 0.2s;}
+.btn-primary:hover{background:var(--navy-light);}
+.btn-secondary{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--cream);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;text-decoration:none;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.btn-secondary:hover{border-color:var(--navy);color:var(--navy);}
+
+/* NO RESULTS */
+.no-results{text-align:center;padding:4rem 2rem;color:var(--text-light);}
+.no-results h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text-mid);margin-bottom:8px;}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,0.5);text-align:center;padding:2rem;font-size:13px;margin-top:4rem;line-height:1.8;}
+footer strong{color:var(--gold);}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none;}
+
+@media(max-width:600px){
+  .stats{gap:1.5rem;}
+  .forms-grid{grid-template-columns:1fr;}
+  nav{padding:0 1rem;}
+  .nav-tagline{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+    </div>
+    <div>
+      <div class="nav-logo-text">Open<span>Docket</span></div>
+      <div class="nav-tagline">Free Legal Forms for Everyone</div>
+    </div>
+  </div>
+  <div class="nav-right">
+    <a href="#about" class="nav-link">About</a>
+    <a href="#contribute" class="nav-link">Contribute</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><span class="hero-badge-dot"></span>100% Free — No Signup Required</div>
+  <h1>Legal forms shouldn't require a <em>lawyer</em> to find</h1>
+  <p>Search hundreds of government forms in plain English. Understand what each form does, who needs it, and exactly what to do next — for free.</p>
+  <div class="search-box">
+    <input type="text" class="search-input" id="heroSearch" placeholder="Describe your situation... e.g. 'landlord won't return deposit'" oninput="handleSearch(this.value)" />
+    <button class="search-btn" onclick="handleSearch(document.getElementById('heroSearch').value)">
+      <svg viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="#0B1F3A" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="search-hint">Try: "eviction" · "file for bankruptcy" · "custody" · "unemployment" · "VA benefits"</div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num" id="totalForms">0</div><div class="stat-label">Forms Available</div></div>
+  <div class="stat"><div class="stat-num">9</div><div class="stat-label">Categories</div></div>
+  <div class="stat"><div class="stat-num">50+</div><div class="stat-label">States Covered</div></div>
+  <div class="stat"><div class="stat-num">$0</div><div class="stat-label">Cost to Use</div></div>
+</div>
+
+<div class="main">
+  <div class="filters-row" id="filtersRow">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterCategory('all',this)">All Forms</button>
+    <button class="filter-btn" onclick="filterCategory('housing',this)">Housing</button>
+    <button class="filter-btn" onclick="filterCategory('bankruptcy',this)">Bankruptcy</button>
+    <button class="filter-btn" onclick="filterCategory('employment',this)">Employment</button>
+    <button class="filter-btn" onclick="filterCategory('family',this)">Family</button>
+    <button class="filter-btn" onclick="filterCategory('immigration',this)">Immigration</button>
+    <button class="filter-btn" onclick="filterCategory('veterans',this)">Veterans</button>
+    <button class="filter-btn" onclick="filterCategory('healthcare',this)">Healthcare</button>
+    <button class="filter-btn" onclick="filterCategory('smallclaims',this)">Small Claims</button>
+    <select class="state-select" onchange="filterState(this.value)" id="stateSelect">
+      <option value="all">All States</option>
+      <option value="federal">Federal Only</option>
+      <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option><option value="FL">Florida</option><option value="GA">Georgia</option>
+      <option value="IL">Illinois</option><option value="IN">Indiana</option><option value="KY">Kentucky</option>
+      <option value="LA">Louisiana</option><option value="MI">Michigan</option><option value="MN">Minnesota</option>
+      <option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="NC">North Carolina</option>
+      <option value="NJ">New Jersey</option><option value="NY">New York</option><option value="OH">Ohio</option>
+      <option value="PA">Pennsylvania</option><option value="TN">Tennessee</option><option value="TX">Texas</option>
+      <option value="VA">Virginia</option><option value="WA">Washington</option><option value="WI">Wisconsin</option>
+    </select>
+  </div>
+
+  <div class="section-header">
+    <div class="section-title" id="sectionTitle">All Forms</div>
+    <div class="result-count" id="resultCount"></div>
+  </div>
+
+  <div class="forms-grid" id="formsGrid"></div>
+  <div class="no-results" id="noResults" style="display:none;">
+    <h3>No forms found</h3>
+    <p>Try a different search term or category.</p>
+  </div>
+</div>
+
+<div id="about" style="background:var(--navy-mid);padding:3rem 2rem;text-align:center;">
+  <div style="max-width:640px;margin:0 auto;">
+    <h2 style="font-family:'Playfair Display',serif;color:var(--white);font-size:1.8rem;margin-bottom:1rem;">Why Open Docket exists</h2>
+    <p style="color:rgba(255,255,255,0.65);font-size:15px;line-height:1.8;">Not everyone can afford a lawyer to find the right form. Not everyone knows what forms exist. Open Docket was built for them — a completely free, open source legal form finder that speaks plain English. No subscriptions. No signups. No gatekeeping. Just people with problems and the forms to help solve them.</p>
+  </div>
+</div>
+
+<footer>
+  <strong>Open Docket</strong> — Free legal forms for everyone.<br>
+  Open source. Always free. <a href="https://github.com" id="githubLink">Contribute on GitHub</a><br><br>
+  <span style="font-size:11px;">Open Docket provides information only, not legal advice. Always consult a licensed attorney for complex legal matters.</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header" style="position:relative;">
+      <button class="modal-close" onclick="closeModalDirect()">×</button>
+      <div class="modal-category" id="mCategory"></div>
+      <div class="modal-title" id="mTitle"></div>
+      <div class="modal-form-num" id="mFormNum"></div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-warning">⚠ Open Docket provides information, not legal advice. For complex situations, consider consulting a legal aid clinic or attorney.</div>
+      <div class="modal-section">
+        <div class="modal-section-title">What this form is for</div>
+        <p id="mWhat"></p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">Who needs this form</div>
+        <p id="mWho"></p>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">How to complete it</div>
+        <ol class="modal-steps" id="mSteps"></ol>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">What happens after you submit</div>
+        <p id="mAfter"></p>
+      </div>
+      <div class="modal-actions">
+        <a class="btn-primary" id="mOfficialLink" href="#" target="_blank" rel="noopener">Get Official Form ↗</a>
+        <button class="btn-secondary" onclick="closeModalDirect()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const FORMS = [
+  {id:1,category:"housing",catLabel:"Housing",num:"HUD-52517",title:"Request for Tenancy Approval",plain:"Ask your housing authority to approve a rental unit for Section 8 / Housing Choice Voucher program.",who:"People who have a housing voucher and found a place they want to rent.",what:"This form is submitted by the landlord and tenant together to get the housing authority to inspect and approve a specific rental unit for the Housing Choice Voucher (Section 8) program. Without approval, you cannot use your voucher at that address.",steps:["Contact your local housing authority to get the form","Fill out tenant information and the property address","Have your landlord complete their section including rent amount","Submit to your housing authority office","Wait for an inspection — usually 1-2 weeks"],after:"The housing authority will inspect the unit. If it passes, they will send the landlord a Housing Assistance Payment (HAP) contract. If it fails, the landlord must fix the issues before you can move in.",link:"https://www.hud.gov/program_offices/public_indian_housing/programs/hcv/forms",state:"federal",tags:["section 8","housing voucher","rent","hud","affordable housing"]},
+
+  {id:2,category:"housing",catLabel:"Housing",num:"VARIES BY STATE",title:"Tenant's Answer to Eviction Complaint",plain:"Respond to an eviction lawsuit filed against you in court.",who:"Renters who have received a court summons saying their landlord is trying to evict them.",what:"When a landlord files for eviction, the court sends you a summons. This form is your official response — called an 'Answer.' Without filing it, the judge may rule against you automatically. This is one of the most time-sensitive forms on this site.",steps:["Read your eviction summons carefully — note the court date","Get the Answer form from your local courthouse or court website","Write down your defenses (e.g. rent was paid, landlord didn't give proper notice, unit has code violations)","File the form at the courthouse before your deadline — usually 5-10 days","Keep a copy and bring it to your court hearing"],after:"Your case will go before a judge. Having filed an Answer means you get to tell your side of the story. A legal aid attorney can help you prepare defenses even if you cannot afford one.",link:"https://www.lawhelp.org",state:"all",tags:["eviction","eviction notice","landlord","kicked out","court","answer","summons"]},
+
+  {id:3,category:"housing",catLabel:"Housing",num:"VARIES BY STATE",title:"Security Deposit Demand Letter",plain:"Formally demand your landlord return your security deposit.",who:"Renters who have moved out and did not receive their deposit back within the legal deadline.",what:"Most states require landlords to return security deposits within 14-30 days of move-out. If they don't, you can send a formal demand letter — the first step before taking them to small claims court. Many landlords pay up when they receive this letter.",steps:["Look up your state's security deposit deadline (usually 14-30 days)","Document your move-out condition with photos","Write a letter stating the amount owed, the date you moved out, and your forwarding address","Send it by certified mail so you have proof","Keep copies of everything"],after:"If the landlord doesn't respond within 10-14 days, you can file in small claims court. Many states allow you to sue for 2-3x the deposit amount if the landlord wrongfully withheld it.",link:"https://www.lawhelp.org",state:"all",tags:["security deposit","deposit","landlord","move out","refund"]},
+
+  {id:4,category:"bankruptcy",catLabel:"Bankruptcy",num:"B 101",title:"Voluntary Petition for Individuals (Chapter 7)",plain:"File for Chapter 7 bankruptcy to eliminate most of your debts and get a fresh financial start.",who:"Individuals with overwhelming debt who pass the means test and want most debts discharged.",what:"Chapter 7 is the most common personal bankruptcy. It eliminates most unsecured debts like credit cards and medical bills within 3-6 months. You must pass a means test showing your income is below your state's median. Some assets may be sold to pay creditors, but most people keep everything they own through exemptions.",steps:["Take a required credit counseling course (approved provider list on uscourts.gov)","Complete Form B 101 with all your financial information","File with your local bankruptcy court along with supporting schedules","Attend a 341 Meeting of Creditors (a brief 5-10 minute meeting)","Complete a debtor education course after filing","Receive your discharge — usually 3-6 months after filing"],after:"Most of your eligible debts are legally eliminated. Creditors cannot contact you during or after the process for discharged debts. The bankruptcy stays on your credit report for 10 years but you can start rebuilding credit immediately.",link:"https://www.uscourts.gov/forms/bankruptcy-forms/voluntary-petition-individuals-filing-bankruptcy-0",state:"federal",tags:["bankruptcy","chapter 7","debt","credit cards","medical bills","fresh start","broke"]},
+
+  {id:5,category:"bankruptcy",catLabel:"Bankruptcy",num:"B 201",title:"Voluntary Petition for Individuals (Chapter 13)",plain:"File for Chapter 13 bankruptcy to reorganize and repay your debts over 3-5 years while keeping your assets.",who:"People with regular income who want to keep property like a home or car and pay debts back over time.",what:"Chapter 13 lets you keep all your property while catching up on missed mortgage or car payments over a 3-5 year plan. Unlike Chapter 7, you don't eliminate debts immediately — you reorganize them into a manageable payment plan. Great for people behind on their mortgage who want to save their home.",steps:["Take required credit counseling course","File Form B 201 with your proposed repayment plan","File all required schedules listing debts, income, expenses, and property","Attend the 341 Meeting of Creditors","Get your repayment plan confirmed by the judge","Make monthly payments to the trustee for 3-5 years"],after:"After completing your repayment plan, remaining eligible debts are discharged. You keep your property throughout. The bankruptcy stays on your credit report for 7 years.",link:"https://www.uscourts.gov/forms/bankruptcy-forms/voluntary-petition-individuals-filing-bankruptcy-0",state:"federal",tags:["bankruptcy","chapter 13","mortgage","save house","car","repayment","debt","reorganize"]},
+
+  {id:6,category:"bankruptcy",catLabel:"Bankruptcy",num:"B 119",title:"Bankruptcy Means Test (Chapter 7)",plain:"Determine if your income qualifies you to file Chapter 7 bankruptcy.",who:"Anyone considering Chapter 7 bankruptcy — required before filing.",what:"The means test compares your average monthly income to your state's median income. If you're below the median, you automatically qualify for Chapter 7. If you're above, additional calculations determine if you have enough 'disposable income' to repay debts. This form is required for all Chapter 7 filers.",steps:["Gather your last 6 months of income documentation (pay stubs, bank statements)","Calculate your average monthly income","Look up your state's median income on the U.S. Trustee website","Complete the form comparing your income to the median","If above median, complete Part 2 which calculates allowable expenses"],after:"If you pass, you may file Chapter 7. If you fail, you may still be able to file Chapter 13, or wait until your income changes.",link:"https://www.uscourts.gov/forms/bankruptcy-forms/chapter-7-means-test-calculation-0",state:"federal",tags:["bankruptcy","means test","chapter 7","qualify","income","eligibility"]},
+
+  {id:7,category:"employment",catLabel:"Employment",num:"DOL UI",title:"Unemployment Insurance Claim",plain:"Apply for weekly unemployment benefits after losing your job.",who:"Workers who lost their job through no fault of their own — layoffs, company closures, reduced hours.",what:"Unemployment Insurance provides temporary income while you look for work. Benefits typically replace 40-50% of your previous wages for up to 26 weeks. You must have worked a minimum amount and be actively looking for work. Each state runs its own program.",steps:["File your initial claim immediately after job loss — delays reduce benefits","Report your last employer, dates of employment, and reason for separation","File weekly or biweekly certifications confirming you are job-searching","Report any earnings from part-time work","Respond to any requests from the unemployment office within deadlines"],after:"If approved, you receive weekly payments by direct deposit or debit card. You must keep filing certifications and documenting job searches. If denied, you have the right to appeal.",link:"https://www.dol.gov/general/topic/unemployment-insurance",state:"all",tags:["unemployment","laid off","fired","job loss","benefits","weekly","income"]},
+
+  {id:8,category:"employment",catLabel:"Employment",num:"EEOC-151A",title:"EEOC Charge of Discrimination",plain:"File a formal complaint if you were discriminated against at work based on race, sex, age, disability, or religion.",who:"Workers who experienced discrimination, harassment, or retaliation at work.",what:"The Equal Employment Opportunity Commission (EEOC) enforces federal workplace discrimination laws. Filing a charge is the required first step before you can sue your employer. You typically must file within 180-300 days of the discriminatory act. The EEOC will investigate and attempt mediation.",steps:["File as soon as possible — there are strict deadlines","You can file online at publicportal.eeoc.gov, by phone, or at your local EEOC office","Describe what happened, when it happened, and who was involved","Include any witnesses and documentation (emails, texts, performance reviews)","The EEOC will contact your employer and begin an investigation"],after:"The EEOC may investigate, attempt mediation, or issue a 'Right to Sue' letter. A Right to Sue letter allows you to file a lawsuit in federal court. Most cases settle without going to trial.",link:"https://publicportal.eeoc.gov/Portal/Login.aspx",state:"federal",tags:["discrimination","harassment","fired","race","sex","gender","disability","religion","workplace","boss","EEOC"]},
+
+  {id:9,category:"employment",catLabel:"Employment",num:"WHD-58",title:"Wage and Hour Complaint (FLSA)",plain:"Report your employer for not paying you minimum wage, overtime, or stealing your tips.",who:"Workers who were underpaid, denied overtime, had tips stolen, or were not paid at all.",what:"The Fair Labor Standards Act guarantees minimum wage and overtime pay. If your employer violated these laws, you can file a complaint with the Department of Labor's Wage and Hour Division for free. They will investigate and can recover up to 2 years of back pay for you.",steps:["Document all hours worked and wages received","Gather pay stubs, time records, and any written communications","File a complaint at dol.gov/agencies/whd/contact/complaints","Provide details about your employer, job duties, and how you were underpaid","The Wage and Hour Division will contact you to discuss next steps"],after:"The DOL will investigate your employer. If violations are found, they can recover back wages. You cannot be fired or retaliated against for filing — that is also illegal.",link:"https://www.dol.gov/agencies/whd/contact/complaints",state:"federal",tags:["wages","overtime","minimum wage","unpaid","tips","stolen wages","paycheck","employer","underpaid"]},
+
+  {id:10,category:"family",catLabel:"Family",num:"VARIES BY STATE",title:"Petition for Child Custody",plain:"Ask a court to establish or modify who has legal and physical custody of your child.",who:"Parents or guardians seeking custody of a minor child, including after separation or divorce.",what:"A custody petition asks a court to issue an official custody order. Courts always use a 'best interests of the child' standard. There are two types of custody: legal (who makes decisions) and physical (where the child lives). You can have sole or joint custody for either type.",steps:["Get the petition form from your local family court or courthouse website","Fill out information about yourself, the other parent, and your child","Describe your current living situation and why your custody request is in the child's best interest","File with the family court clerk and pay the filing fee (fee waivers available)","Serve the other parent with copies of all filed documents","Attend your court hearing"],after:"The judge will review your petition and may order mediation first. A custody hearing will be scheduled. The judge issues a custody order that both parents must follow. Orders can be modified if circumstances change.",link:"https://www.lawhelp.org",state:"all",tags:["custody","child custody","divorce","separation","kids","parenting","father","mother","joint custody"]},
+
+  {id:11,category:"family",catLabel:"Family",num:"VARIES BY STATE",title:"Child Support Enforcement Request",plain:"Ask your state to help collect child support that is not being paid.",who:"Parents who are owed child support that the other parent is not paying.",what:"Every state has a Child Support Enforcement (CSE) agency that helps collect unpaid child support for free. They can garnish wages, intercept tax refunds, suspend driver's licenses, and even pursue criminal charges for non-payment.",steps:["Contact your state's Child Support Enforcement agency","Provide the other parent's information — name, address, employer if known","Submit proof of the existing court-ordered child support amount","The agency will take enforcement action — usually wage garnishment","Monitor payments through the state's payment system"],after:"The agency can collect back payments (arrears) in addition to current support. Enforcement is ongoing — you don't have to keep coming back each time they miss a payment.",link:"https://www.acf.hhs.gov/css/contact-information/state-and-tribal-child-support-agency-contacts",state:"federal",tags:["child support","unpaid","enforce","collect","deadbeat","parent","kids","money"]},
+
+  {id:12,category:"family",catLabel:"Family",num:"VARIES BY STATE",title:"Name Change Petition",plain:"Legally change your name through the court system.",who:"Adults seeking a legal name change for any reason — marriage, divorce, gender identity, or personal preference.",what:"A legal name change requires a court petition in most states. After the court approves it, you receive a court order that you use to update all your government IDs, Social Security records, and other documents.",steps:["Get the name change petition form from your local courthouse","Fill out your current name, desired new name, and reason for the change","File with the court clerk and pay the filing fee (waivers available)","Some states require publishing a notice in a local newspaper","Attend your court hearing — usually brief and straightforward","Receive your court order and use it to update all your IDs"],after:"With your court order, update your Social Security card first (free), then your driver's license, passport, bank accounts, and other records. The process takes 4-8 weeks total.",link:"https://www.lawhelp.org",state:"all",tags:["name change","legal name","identity","marriage","divorce","gender","new name"]},
+
+  {id:13,category:"immigration",catLabel:"Immigration",num:"I-485",title:"Application to Register Permanent Residence (Green Card)",plain:"Apply for a permanent green card if you are already in the United States.",who:"People already in the US who are eligible for permanent residence through family, employment, or other qualifying status.",what:"Form I-485 is how you apply for a green card without leaving the United States. You must have an approved visa petition and a visa number available. This is called 'Adjustment of Status.' The process includes biometrics, medical exam, and usually an interview.",steps:["Confirm you have an approved I-130 or I-140 petition and a visa number is available","Complete Form I-485 accurately — errors cause serious delays","Gather supporting documents: passport, birth certificate, medical exam (Form I-693), photos","Pay the filing fee — currently $1,440 for adults (fee waivers sometimes available)","Submit everything together to USCIS","Attend biometrics appointment and interview"],after:"If approved, you receive a green card valid for 10 years (2 years if through recent marriage). You can travel, work freely, and apply for citizenship after 3-5 years.",link:"https://www.uscis.gov/i-485",state:"federal",tags:["green card","permanent resident","immigration","citizenship","i-485","adjustment of status","visa"]},
+
+  {id:14,category:"immigration",catLabel:"Immigration",num:"I-90",title:"Application to Replace Permanent Resident Card",plain:"Renew or replace a lost, stolen, or expired green card.",who:"Permanent residents whose green card is expiring, expired, lost, stolen, or damaged.",what:"Green cards expire and must be renewed. You cannot let your green card expire — it can affect your ability to work and travel. Form I-90 is the renewal application. Most people file online at uscis.gov.",steps:["File Form I-90 at uscis.gov or mail it in","Pay the filing fee ($540 as of 2024)","Attend a biometrics appointment","Receive your new card by mail — takes 6-12 months"],after:"USCIS will mail you a new 10-year green card. Keep your receipt notice as proof of pending renewal — it extends your work authorization.",link:"https://www.uscis.gov/i-90",state:"federal",tags:["green card","renew","expired","lost","replace","permanent resident","i-90"]},
+
+  {id:15,category:"immigration",catLabel:"Immigration",num:"I-821D",title:"DACA Renewal Application (Deferred Action)",plain:"Renew your DACA status to continue living and working legally in the US.",who:"People who currently have DACA status and need to renew before it expires.",what:"DACA (Deferred Action for Childhood Arrivals) provides protection from deportation and work authorization for eligible people brought to the US as children. You must renew every 2 years. File 4-5 months before your current DACA expires.",steps:["File Form I-821D and Form I-765 together","Gather evidence you meet DACA requirements","Pay the $495 filing fee (no fee waivers for DACA)","Mail your application to the correct USCIS lockbox","Track your case at uscis.gov"],after:"If approved, you receive a new 2-year Employment Authorization Document (EAD). Continue checking USCIS for any policy changes affecting DACA.",link:"https://www.uscis.gov/DACA",state:"federal",tags:["DACA","dreamers","renewal","deferred action","work permit","undocumented","immigration"]},
+
+  {id:16,category:"veterans",catLabel:"Veterans",num:"VA 21-526EZ",title:"Disability Compensation Claim (VA)",plain:"Apply for monthly disability payments from the VA for injuries or conditions caused by military service.",who:"Veterans with physical or mental health conditions connected to their military service.",what:"VA disability compensation provides tax-free monthly payments to veterans injured or made ill by their service. You can claim physical injuries, PTSD, hearing loss, TBI, and many other conditions. The amount depends on your disability rating (0-100%). Many veterans are entitled to benefits they never applied for.",steps:["Gather service records, discharge papers (DD-214), and medical records","List all conditions you believe are connected to your service","File Form 21-526EZ online at va.gov (fastest), by mail, or at a VA regional office","A VA-accredited claims agent or VSO can help you file for free","The VA will schedule a Compensation and Pension (C&P) exam","Respond to all VA requests quickly to avoid delays"],after:"The VA issues a rating decision. If denied or you disagree with the rating, you have the right to appeal. VSOs (Veterans Service Organizations) provide free help with claims and appeals.",link:"https://www.va.gov/disability/how-to-file-claim/",state:"federal",tags:["VA","disability","veterans","PTSD","benefits","military","service connected","compensation","rating"]},
+
+  {id:17,category:"veterans",catLabel:"Veterans",num:"VA 22-1990",title:"Application for VA Education Benefits (GI Bill)",plain:"Apply to use your GI Bill education benefits for college, trade school, or training programs.",who:"Veterans, service members, and some dependents eligible for education benefits.",what:"The Post-9/11 GI Bill and other education programs pay for tuition, housing, and books for eligible veterans and service members. Benefits can cover up to 36 months of education at approved schools. Dependents may be eligible through the transfer of benefits program.",steps:["Determine which GI Bill program you qualify for (Post-9/11 is most generous for recent vets)","Apply online at va.gov or mail Form 22-1990","Select your school and program","The VA will certify your enrollment with your school","Benefits start with your first term"],after:"You receive a Certificate of Eligibility to give your school. Housing allowance is paid monthly. Remaining benefit months track by month used.",link:"https://www.va.gov/education/apply-for-education-benefits/application/1990/introduction",state:"federal",tags:["GI bill","education","college","veterans","school","tuition","military","benefits"]},
+
+  {id:18,category:"healthcare",catLabel:"Healthcare",num:"CMS-40B",title:"Application for Medicare Part B",plain:"Enroll in Medicare Part B to get coverage for doctor visits, outpatient care, and medical equipment.",who:"People turning 65, disabled individuals on Medicare Part A, and those who missed their initial enrollment period.",what:"Medicare Part B covers doctor visits, outpatient hospital care, preventive services, and durable medical equipment. It is optional but most people should enroll. Missing your enrollment window results in permanent premium penalties.",steps:["Determine your enrollment period — usually the 7 months around your 65th birthday","Complete Form CMS-40B","Submit to your local Social Security office by mail, fax, or in person","You can also enroll online at ssa.gov or by calling 1-800-772-1213"],after:"Coverage typically starts the month after you enroll. Your Medicare card will arrive by mail. The standard Part B premium is deducted from your Social Security payment.",link:"https://www.cms.gov/Medicare/CMS-Forms/CMS-Forms/downloads/cms40b.pdf",state:"federal",tags:["medicare","part B","insurance","healthcare","seniors","65","doctor","enrollment"]},
+
+  {id:19,category:"healthcare",catLabel:"Healthcare",num:"SSA-16",title:"Application for Social Security Disability (SSDI)",plain:"Apply for monthly disability income if you cannot work due to a medical condition.",who:"Workers who have a disability expected to last at least 12 months or result in death and cannot perform substantial work.",what:"SSDI provides monthly income to workers who become disabled before retirement age. Benefits are based on your work history and what you paid into Social Security. The average benefit is around $1,300/month. The application process is notoriously long — apply as soon as possible.",steps:["Apply online at ssa.gov (fastest), by phone at 1-800-772-1213, or in person","Gather medical records, work history, and doctor information","Complete all forms thoroughly — incomplete applications are common reason for denial","The initial decision takes 3-6 months","Most initial claims are denied — plan to appeal if denied"],after:"If approved, benefits start 5 months after your disability date. Medicare coverage starts after 24 months of SSDI. If denied, file an appeal immediately — many approved cases are won on appeal with a hearing.",link:"https://www.ssa.gov/benefits/disability/",state:"federal",tags:["disability","SSDI","social security","can't work","medical","income","SSI","benefits"]},
+
+  {id:20,category:"smallclaims",catLabel:"Small Claims",num:"VARIES BY STATE",title:"Small Claims Court Complaint",plain:"Sue someone for money owed — up to $10,000-$25,000 depending on your state — without a lawyer.",who:"Anyone owed money by an individual or business who won't pay — security deposits, bad checks, property damage, unpaid wages, contractor work not done.",what:"Small claims court is designed for regular people without lawyers. You fill out a simple complaint, pay a small filing fee ($30-$100), and a judge hears your case in a straightforward hearing. Limits vary by state — most are $5,000-$10,000, some up to $25,000.",steps:["Determine your state's small claims limit and find your local courthouse","Complete the plaintiff's complaint form — describe what happened and how much you're owed","Pay the filing fee (usually $30-$100)","The court will serve the defendant with notice of the hearing","Gather your evidence: contracts, receipts, photos, texts, emails","Attend your hearing and present your case clearly and calmly"],after:"If you win, the judge issues a judgment in your favor. Collecting is a separate step — you may need to garnish wages or bank accounts. The defendant can appeal but most judgments are paid.",link:"https://www.lawhelp.org",state:"all",tags:["small claims","sue","money","owed","court","landlord","contractor","bad check","dispute","judgment"]}
+];
+
+let currentCategory = 'all';
+let currentState = 'all';
+let currentSearch = '';
+
+function init() {
+  document.getElementById('totalForms').textContent = FORMS.length;
+  renderForms();
+}
+
+function renderForms() {
+  let filtered = FORMS;
+  if (currentCategory !== 'all') filtered = filtered.filter(f => f.category === currentCategory);
+  if (currentState !== 'all') {
+    filtered = filtered.filter(f => f.state === 'all' || f.state === 'federal' || f.state === currentState);
+    if (currentState === 'federal') filtered = FORMS.filter(f => f.state === 'federal');
+  }
+  if (currentSearch.trim()) {
+    const q = currentSearch.toLowerCase();
+    filtered = filtered.filter(f =>
+      f.title.toLowerCase().includes(q) ||
+      f.plain.toLowerCase().includes(q) ||
+      f.tags.some(t => t.includes(q)) ||
+      f.category.includes(q)
+    );
+  }
+  const grid = document.getElementById('formsGrid');
+  const noResults = document.getElementById('noResults');
+  document.getElementById('resultCount').textContent = filtered.length + ' form' + (filtered.length !== 1 ? 's' : '');
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    noResults.style.display = 'block';
+    return;
+  }
+  noResults.style.display = 'none';
+  grid.innerHTML = filtered.map(f => `
+    <div class="form-card" onclick="openModal(${f.id})">
+      <div class="card-top">
+        <span class="card-category cat-${f.category}">${f.catLabel}</span>
+        <span class="form-num">${f.num}</span>
+      </div>
+      <div class="card-title">${f.title}</div>
+      <div class="card-plain">${f.plain}</div>
+      <div class="card-footer">
+        <span class="card-who"><strong>Who needs it:</strong> ${f.who.substring(0,60)}${f.who.length>60?'...':''}</span>
+        <div class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function handleSearch(val) {
+  currentSearch = val;
+  renderForms();
+  if (val.trim()) {
+    document.getElementById('sectionTitle').textContent = 'Search Results';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    currentCategory = 'all';
+  }
+}
+
+function filterCategory(cat, btn) {
+  currentCategory = cat;
+  currentSearch = '';
+  document.getElementById('heroSearch').value = '';
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sectionTitle').textContent = cat === 'all' ? 'All Forms' : btn.textContent;
+  renderForms();
+}
+
+function filterState(val) {
+  currentState = val;
+  renderForms();
+}
+
+function openModal(id) {
+  const f = FORMS.find(x => x.id === id);
+  if (!f) return;
+  document.getElementById('mCategory').textContent = f.catLabel;
+  document.getElementById('mTitle').textContent = f.title;
+  document.getElementById('mFormNum').textContent = 'Form: ' + f.num;
+  document.getElementById('mWhat').textContent = f.what;
+  document.getElementById('mWho').textContent = f.who;
+  document.getElementById('mAfter').textContent = f.after;
+  document.getElementById('mSteps').innerHTML = f.steps.map(s => `<li>${s}</li>`).join('');
+  document.getElementById('mOfficialLink').href = f.link;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+init();
+</script>
+</body>
+</html>
